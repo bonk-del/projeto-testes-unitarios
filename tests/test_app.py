@@ -1,16 +1,33 @@
-from app import soma
+import os
+import sys
 
-def test_1():
-    assert soma(1,1) == 2
+import pytest
 
-def test_2():
-    assert soma(2,2) == 4
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-def test_3():
-    assert soma(3,3) == 6
+from app import divide, multiplica, soma, subtrai
 
-def test_4():
-    assert soma(5,5) == 10
 
-def test_5():
-    assert soma(10,5) == 15
+def test_soma_dois_positivos():
+    assert soma(2, 3) == 5
+
+
+def test_soma_com_zero():
+    assert soma(0, 7) == 7
+
+
+def test_subtrai_resultado_positivo():
+    assert subtrai(10, 4) == 6
+
+
+def test_multiplica_numeros_inteiros():
+    assert multiplica(3, 4) == 12
+
+
+def test_divide_resultado_correto():
+    assert divide(10, 2) == 5
+
+
+def test_divide_por_zero_lanca_excecao():
+    with pytest.raises(ValueError):
+        divide(10, 0)
